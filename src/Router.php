@@ -12,7 +12,7 @@ final class Router
     {
         $refClass = new \ReflectionClass($controller);
 
-        $instanece = new $controller();
+        $instance = new $controller();
 
         foreach ($refClass->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes(Route::class) as $attribute) {
@@ -20,7 +20,7 @@ final class Router
 
                 $path = $this->normalizePath($prefix . $route->path);
 
-                $this->routes[$route->method][$path] = [$instanece, $method->getName()];
+                $this->routes[$route->method][$path] = [$instance, $method->getName()];
             }
         }
     }
