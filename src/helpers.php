@@ -3,23 +3,27 @@
 use Rohmat\CrudTest\FlashMessage;
 use Rohmat\CrudTest\ViewRenderer;
 
-if (!function_exists('asset')) {
-    function asset(string $path): string
+if (!function_exists('base_path')) {
+    function base_path(): string
     {
         $base = $_SERVER['SCRIPT_NAME'] ?? '';
         $base = rtrim(str_replace('/index.php', '', $base), '/');
 
-        return $base . '/' . ltrim($path, '/');
+        return $base;
+    }
+}
+
+if (!function_exists('asset')) {
+    function asset(string $path): string
+    {
+        return base_path() . '/' . ltrim($path, '/');
     }
 }
 
 if (!function_exists('url')) {
     function url(string $path): string
     {
-        $base = $_SERVER['SCRIPT_NAME'] ?? '';
-        $base = rtrim(str_replace('/index.php', '', $base), '/');
-
-        return $base . '/' . ltrim($path, '/');
+        return asset($path);
     }
 }
 

@@ -29,8 +29,8 @@ final class Router
     {
         $method = $_SERVER['REQUEST_METHOD'];
         $uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $basePath = base_path();
 
-        $basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
         if (strlen($basePath) > 0 && str_starts_with($uriPath, $basePath)) {
             $path = substr($uriPath, strlen($basePath));
         } else {
