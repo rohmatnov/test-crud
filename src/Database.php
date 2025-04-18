@@ -10,7 +10,7 @@ class Database
 
     public static function connect(array $config): void
     {
-        self::$conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
+        self::$conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database'], $config['port']);
 
         if (self::$conn->connect_error) {
             die("Connection failed: " . self::$conn->connect_error);
